@@ -189,7 +189,7 @@ MongoDB ←→ External APIs
 
 ## Author
 
-**Neel Patil** — CS Engineering Student · Competitive Programmer · Full Stack Developer
+**Neel Patil** — CS Engineering Student 
 
 [![GitHub](https://img.shields.io/badge/GitHub-Neel092-181717?logo=github)](https://github.com/Neel092)
 
