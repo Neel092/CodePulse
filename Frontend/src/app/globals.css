@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 34 25% 94%;
+    --foreground: 26 19% 19%;
+    
+    --card: 38 43% 98%;
+    --card-foreground: 26 19% 19%;
+    
+    --popover: 38 43% 98%;
+    --popover-foreground: 26 19% 19%;
+    
+    --primary: 26 66% 46%;
+    --primary-foreground: 38 43% 98%;
+    
+    --secondary: 144 33% 36%;
+    --secondary-foreground: 38 43% 98%;
+    
+    --muted: 36 11% 49%;
+    --muted-foreground: 36 11% 30%;
+    
+    --accent: 26 66% 46%;
+    --accent-foreground: 38 43% 98%;
+    
+    --destructive: 0 52% 43%;
+    --destructive-foreground: 38 43% 98%;
+    
+    --border: 41 24% 77%;
+    --input: 41 24% 77%;
+    --ring: 26 66% 46%;
+    
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 30 17% 5%;
+    --foreground: 39 30% 70%;
+    
+    --card: 30 12% 9%;
+    --card-foreground: 39 30% 70%;
+    
+    --popover: 30 12% 9%;
+    --popover-foreground: 39 30% 70%;
+    
+    --primary: 23 68% 54%;
+    --primary-foreground: 30 12% 5%;
+    
+    --secondary: 136 26% 49%;
+    --secondary-foreground: 30 12% 5%;
+    
+    --muted: 27 10% 44%;
+    --muted-foreground: 30 7% 41%;
+    
+    --accent: 23 68% 54%;
+    --accent-foreground: 30 12% 5%;
+    
+    --destructive: 358 46% 51%;
+    --destructive-foreground: 30 12% 5%;
+    
+    --border: 36 12% 16%;
+    --input: 36 12% 16%;
+    --ring: 23 68% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Typography Customizations */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne);
+  letter-spacing: -0.03em;
+}
+
+.mono-stat {
+  font-family: var(--font-jetbrains-mono);
+  letter-spacing: 0.05em;
+}
