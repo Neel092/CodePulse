@@ -93,11 +93,12 @@ const userSchema = new Schema(
 );
 
 // jo bhi data save ho usse phle 
-userSchema.pre("save", async function () {
+userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
-        return;
+        return next();
     }
     this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
+    next();
 
 });
 
