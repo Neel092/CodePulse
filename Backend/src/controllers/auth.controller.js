@@ -55,6 +55,9 @@ export const register = async (req, res) => {
             password,
         });
 
+        res.clearCookie("accessToken");
+        res.clearCookie("refreshToken");
+
         const { accessToken, refreshToken } =
             await generateTokens(user);
 
@@ -122,6 +125,9 @@ export const login = async (req, res) => {
                 message: "Invalid credentials",
             });
         }
+
+        res.clearCookie("accessToken");
+        res.clearCookie("refreshToken");
 
         const { accessToken, refreshToken } =
             await generateTokens(user);
