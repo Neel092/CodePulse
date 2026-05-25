@@ -13,12 +13,12 @@ app.use(cors({
     origin: (origin, callback) => {
         // Allow requests with no origin (like mobile apps or curl)
         if (!origin) return callback(null, true);
-        
+
         const allowedOrigins = [
-            "http://localhost:3000", 
-            "http://localhost:3001", 
-            "http://localhost:3002", 
-            "http://localhost:3003", 
+            "http://localhost:3000",
+            "http://localhost:3001",
+            "http://localhost:3002",
+            "http://localhost:3003",
             "http://localhost:3004",
             "http://127.0.0.1:3000",
             "http://127.0.0.1:3001",
@@ -26,7 +26,7 @@ app.use(cors({
             "http://127.0.0.1:3003",
             "http://127.0.0.1:3004"
         ];
-        
+
         if (allowedOrigins.indexOf(origin) !== -1 || origin.startsWith('http://localhost:')) {
             callback(null, true);
         } else {
@@ -62,5 +62,13 @@ app.use("/api/progress", progressRoutes);
 app.use("/api/sync", syncRoutes);
 
 app.use("/api/contests", contestRoutes);
+
+app.get('/api/health', (req, res) => {
+    res.json({
+        status: 'ok',
+        uptime: process.uptime(),
+        timestamp: new Date().toISOString()
+    })
+})
 
 export default app;
