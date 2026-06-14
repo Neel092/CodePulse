@@ -177,8 +177,6 @@ MongoDB ←→ External APIs
 
 ## Roadmap
 
-- [ ] CodeChef, GeeksforGeeks, HackerRank sync
-- [ ] Redis caching
 - [ ] Background job queues (webhook-based sync)
 - [ ] Leaderboard
 - [ ] Sheet generator & Interview tracker
