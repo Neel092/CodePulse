@@ -25,7 +25,7 @@ export const fetchCodeforcesData = async (handle) => {
 
         // Filter ACs and deduplicate
         const uniqueProblems = new Map();
-        
+
         submissions.forEach(sub => {
             if (sub.verdict === "OK") {
                 const problemId = `${sub.problem.contestId}-${sub.problem.index}`;
@@ -40,7 +40,8 @@ export const fetchCodeforcesData = async (handle) => {
         const calendarMap = new Map();
         uniqueProblems.forEach(sub => {
             const dateStr = new Date(sub.creationTimeSeconds * 1000).toISOString().split('T')[0];
-            const ts = Math.floor(new Date(dateStr).getTime() / 1000); // Unix timestamp at midnight
+            const ts = Math.floor(new Date(dateStr).getTime() / 1000);
+            // Unix timestamp at midnight
             calendarMap.set(ts, (calendarMap.get(ts) || 0) + 1);
         });
 

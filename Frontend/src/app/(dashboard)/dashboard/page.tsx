@@ -81,7 +81,7 @@ export default function DashboardPage() {
         <h1 className="text-4xl font-display font-bold text-heading-dark">Dashboard</h1>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard
           label="LeetCode Solved"
           value={dashboard?.lcData?.totalSolved || 0}
@@ -90,11 +90,18 @@ export default function DashboardPage() {
           subtext={`Streak: ${dashboard?.lcData?.streak || 0} days`}
         />
         <StatCard
-          label="Competitive Programming"
-          value={(dashboard?.platforms?.codeforces || 0) + (dashboard?.platforms?.codechef || 0)}
+          label="Codeforces Solved"
+          value={dashboard?.platforms?.codeforces || 0}
           icon={Trophy}
           color="text-[#3B82F6]"
-          subtext={`CF Rating: ${dashboard?.cfData?.rating || 0} | CC: ${dashboard?.ccData?.rating || 0}`}
+          subtext={`CF Rating: ${dashboard?.cfData?.rating || 0}`}
+        />
+        <StatCard
+          label="CodeChef Solved"
+          value={dashboard?.platforms?.codechef || 0}
+          icon={Trophy}
+          color="text-[#5B4638]"
+          subtext={`CC Rating: ${dashboard?.ccData?.rating || 0} (${dashboard?.ccData?.stars || '0★'})`}
         />
       </div>
 

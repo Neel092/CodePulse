@@ -127,8 +127,21 @@ export const getDashboard = async (req, res) => {
             hard: user.syncMetadata.codeforces.hardSolved || 0
         } : cfDifficulty;
 
+        // Override platform totals with official stats if available
+        if (user?.syncMetadata?.leetcode?.totalSolved !== undefined) {
+            platforms['leetcode'] = user.syncMetadata.leetcode.totalSolved;
+        }
+        if (user?.syncMetadata?.codeforces?.totalSolved !== undefined) {
+            platforms['codeforces'] = user.syncMetadata.codeforces.totalSolved;
+        }
+        if (user?.syncMetadata?.codechef?.totalSolved !== undefined) {
+            platforms['codechef'] = user.syncMetadata.codechef.totalSolved;
+        }
+
+        const finalTotalSolved = Object.values(platforms).reduce((a, b) => a + b, 0);
+
         return res.status(200).json({
-            totalSolved,
+            totalSolved: finalTotalSolved,
             difficulty,
             lcDifficulty: finalLcDifficulty,
             cfDifficulty: finalCfDifficulty,

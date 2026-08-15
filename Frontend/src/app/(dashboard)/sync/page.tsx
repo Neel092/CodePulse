@@ -189,6 +189,14 @@ export default function SyncPage() {
           description="Fetches all AC submissions and your entire rating history."
           endpoint="/api/sync/codeforces"
         />
+
+        <SyncCard
+          platform="codechef"
+          icon={<Code size={24} />}
+          color="text-[#5B4638]"
+          description="Fetches all solved problems, star rating, and competition history."
+          endpoint="/api/sync/codechef"
+        />
       </div>
 
       <div className="pt-8">
@@ -197,7 +205,7 @@ export default function SyncPage() {
         </h3>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 opacity-50 grayscale">
-          {["CodeChef", "GFG", "HackerRank", "AtCoder"].map((plat) => (
+          {["GFG", "HackerRank", "AtCoder"].map((plat) => (
             <div
               key={plat}
               className="p-4 bg-surface-dark border border-border-dark rounded-xl flex items-center justify-between cursor-not-allowed"
