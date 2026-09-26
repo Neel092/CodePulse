@@ -27,18 +27,6 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 const PUBLIC_ROUTES = ['/login', '/register', '/']
 
-const DEMO_USER: User = {
-  _id: "demo-user-algotracer",
-  username: "algotracer",
-  displayName: "algotracer",
-  email: "algotracer@codepulse.io",
-  platforms: {
-    leetcode: "Tushar_waghmare12",
-    codeforces: "neelpatil092",
-    codechef: "compiler7",
-  },
-};
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
@@ -55,10 +43,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         await initCSRF()
         const { data } = await api.get('/api/auth/profile')
-        setUser(data.user || DEMO_USER)
+        setUser(data.user)
       } catch {
-        // Fallback to demo user if backend is offline so dashboard and problems are testable
-        setUser(DEMO_USER)
+        setUser(null)
       } finally {
         setLoading(false)
       }
@@ -81,17 +68,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [loading, user, pathname, router])
 
   const login = async (email: string, password: string) => {
-    try {
-      await initCSRF()
-      const { data } = await api.post('/api/auth/login', { email, password })
-      setUser(data.user)
-      router.push('/dashboard')
-    } catch (err: any) {
-      console.error("LOGIN ERROR IN CONTEXT:", err.response?.data || err.message)
-      // If server unreachable, login with demo user
-      setUser(DEMO_USER)
-      router.push('/dashboard')
-    }
+    await initCSRF()
+    const { data } = await api.post('/api/auth/login', { email, password })
+    setUser(data.user)
+    router.push('/dashboard')
   }
 
   const logout = async () => {

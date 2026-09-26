@@ -1,10 +1,10 @@
-import mongoose, { Schema, trusted } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const progressSchema = new Schema(
     {
         userId: {
             type: Schema.Types.ObjectId,
-            ref: "user",
+            ref: "User",
             required: true
         },
         problemId: {
@@ -14,13 +14,12 @@ const progressSchema = new Schema(
 
         platform: {
             type: String,
-            enum: ["leetcode", "codeforces", "gfg"],
+            enum: ["leetcode", "codeforces", "codechef", "atcoder", "gfg", "interviewbit", "hackerrank"],
             required: true,
         },
 
         difficulty: {
             type: String,
-            enum: ["easy", "medium", "hard"],
             required: true,
         },
 
