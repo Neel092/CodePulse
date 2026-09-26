@@ -41,8 +41,8 @@ export const ContestCard = ({ contest }: { contest: Contest }) => {
                     rel="noopener noreferrer"
                     className={`flex items-center space-x-2 text-sm font-bold px-4 py-2 rounded-xl transition-colors ${
                         isRunning 
-                        ? 'bg-danger-dark text-white hover:bg-danger-dark/80'
-                        : 'bg-primary-dark text-white hover:bg-primary-dark/80'
+                        ? 'bg-danger-dark text-black dark:text-white hover:bg-danger-dark/80'
+                        : 'bg-primary-dark text-black dark:text-white hover:bg-primary-dark/80'
                     }`}
                 >
                     <span>{isRunning ? 'Enter' : 'Register'}</span>

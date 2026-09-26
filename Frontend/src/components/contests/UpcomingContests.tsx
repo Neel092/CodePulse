@@ -56,7 +56,7 @@ export const UpcomingContests = () => {
                             onClick={() => setFilter(p)}
                             className={`px-4 py-2 rounded-xl font-bold text-sm transition-colors whitespace-nowrap ${
                                 filter === p 
-                                ? 'bg-primary-dark text-white' 
+                                ? 'bg-primary-dark text-black dark:text-white' 
                                 : 'bg-surface-dark border border-border-dark text-muted-dark hover:bg-elevated-dark hover:text-foreground-dark'
                             }`}
                         >

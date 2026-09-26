@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Syne, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { AuthProvider } from "@/context/AuthContext";
@@ -13,23 +13,24 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
-const syne = Syne({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["400", "600", "700", "900"],
+  style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-syne",
+  variable: "--font-serif",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
-  title: "CP Tracker | Terminal Warmth",
-  description: "A competitive programming tracker for developers.",
+  title: "CodePulse — Single Pane Telemetry for Algorithmic Competition",
+  description: "Every contest, verdict, and rating spike. In one pulse. Unified telemetry for LeetCode, Codeforces, CodeChef, and AtCoder.",
 };
 
 export default function RootLayout({
@@ -38,22 +39,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="light">
       <body className={cn(
-        "min-h-screen font-sans antialiased",
+        "min-h-screen font-sans bg-[#FAF8F5] dark:bg-[#080808] text-[#181818] dark:text-[#E0E0E0] antialiased selection:bg-[#A32616]/20 selection:text-[#A32616]",
         dmSans.variable,
-        syne.variable,
+        playfair.variable,
         jetbrainsMono.variable
       )}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
           <ToastProvider>
             <AuthProvider>
-              <div className="grain-overlay" />
               <main className="relative z-10">
                 {children}
               </main>

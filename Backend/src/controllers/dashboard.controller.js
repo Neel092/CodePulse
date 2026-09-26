@@ -115,13 +115,13 @@ export const getDashboard = async (req, res) => {
         }
 
         // Prioritize official stats for platform-specific charts if they exist
-        const finalLcDifficulty = user?.syncMetadata?.leetcode ? {
+        const finalLcDifficulty = user?.syncMetadata?.leetcode?.easySolved !== undefined ? {
             easy: user.syncMetadata.leetcode.easySolved || 0,
             medium: user.syncMetadata.leetcode.mediumSolved || 0,
             hard: user.syncMetadata.leetcode.hardSolved || 0
         } : lcDifficulty;
 
-        const finalCfDifficulty = user?.syncMetadata?.codeforces ? {
+        const finalCfDifficulty = user?.syncMetadata?.codeforces?.easySolved !== undefined ? {
             easy: user.syncMetadata.codeforces.easySolved || 0,
             medium: user.syncMetadata.codeforces.mediumSolved || 0,
             hard: user.syncMetadata.codeforces.hardSolved || 0

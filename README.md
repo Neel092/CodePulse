@@ -144,7 +144,7 @@ It aggregates submissions, ratings, contest schedules, and activity heatmaps fro
 ### Caching Strategy
 
 ```
-Request → Redis GET
+Request => Redis GET
             │
      ┌──────┴──────┐
    HIT            MISS

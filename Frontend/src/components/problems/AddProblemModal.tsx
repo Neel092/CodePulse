@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Send, AlertCircle } from "lucide-react";
+import { X, Send, AlertCircle, Code2 } from "lucide-react";
 import api from "@/lib/axios";
 import { cn } from "@/lib/utils";
 
@@ -66,43 +66,48 @@ export default function AddProblemModal({
     >
       <div
         onClick={onClose}
-        className="absolute inset-0 bg-background-dark/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/45 backdrop-blur-sm"
       />
 
-      <div className="relative w-full max-w-lg bg-surface-dark border border-border-dark rounded-2xl shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-lg bg-white dark:bg-[#111111] border border-[#E8E4DC] dark:border-[#242424] rounded-xl shadow-2xl overflow-hidden font-sans">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-border-dark flex items-center justify-between bg-elevated-dark/50">
-          <h3 className="text-xl font-display font-bold">Add to Ledger</h3>
+        <div className="px-6 py-4 border-b border-[#E8E4DC] dark:border-[#1C1C1C] flex items-center justify-between bg-[#FAF8F5] dark:bg-[#141414]">
+          <div className="flex items-center space-x-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A32616]" />
+            <h3 className="text-base font-serif font-bold text-[#181818] dark:text-white tracking-tight">
+              Add Node to Algorithmic Ledger
+            </h3>
+          </div>
 
           <button
             onClick={onClose}
-            className="p-1 hover:bg-elevated-dark rounded-lg transition-colors"
+            className="p-1 text-[#777777] hover:text-[#181818] dark:hover:text-white rounded-lg transition-colors"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {error && (
-            <div className="p-3 bg-danger-dark/10 border border-danger-dark/20 rounded-xl flex items-center space-x-2 text-danger-dark text-sm font-bold">
-              <AlertCircle size={16} />
+            <div className="p-3 bg-[#EF4444]/10 border border-[#EF4444]/20 rounded-lg flex items-center space-x-2 text-[#EF4444] text-xs font-mono font-bold">
+              <AlertCircle size={15} />
               <span>{error}</span>
             </div>
           )}
 
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-muted-dark">
-                Problem ID / Name
+          <div className="space-y-4 font-mono text-xs">
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-[#777777]">
+                PROBLEM IDENTIFIER / NAME
               </label>
 
               <input
                 autoFocus
                 required
                 type="text"
-                placeholder="e.g. Two Sum or 123A"
-                className="w-full px-4 py-3 bg-elevated-dark/50 border border-border-dark rounded-xl focus:outline-none focus:border-primary-dark text-sm font-mono"
+                placeholder="e.g. 15. 3Sum or 1800E"
+                className="w-full px-3.5 py-2.5 bg-[#FAF8F5] dark:bg-[#161616] border border-[#DDD8CF] dark:border-[#262626] rounded-lg text-[#181818] dark:text-[#E0E0E0] placeholder-[#777777] focus:outline-none focus:border-[#A32616] text-xs"
                 value={formData.problemId}
                 onChange={(e) =>
                   setFormData({
@@ -114,13 +119,13 @@ export default function AddProblemModal({
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-muted-dark">
-                  Platform
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-[#777777]">
+                  PLATFORM
                 </label>
 
                 <select
-                  className="w-full px-4 py-3 bg-elevated-dark/50 border border-border-dark rounded-xl focus:outline-none focus:border-primary-dark text-sm font-medium"
+                  className="w-full px-3 py-2.5 bg-[#FAF8F5] dark:bg-[#161616] border border-[#DDD8CF] dark:border-[#262626] rounded-lg text-[#181818] dark:text-[#E0E0E0] focus:outline-none focus:border-[#A32616] text-xs"
                   value={formData.platform}
                   onChange={(e) =>
                     setFormData({
@@ -132,18 +137,18 @@ export default function AddProblemModal({
                   <option value="leetcode">LeetCode</option>
                   <option value="codeforces">Codeforces</option>
                   <option value="codechef">CodeChef</option>
-                  <option value="gfg">GeeksForGeeks</option>
+                  <option value="atcoder">AtCoder</option>
                   <option value="other">Other</option>
                 </select>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-muted-dark">
-                  Difficulty
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-[#777777]">
+                  DIFFICULTY
                 </label>
 
                 <select
-                  className="w-full px-4 py-3 bg-elevated-dark/50 border border-border-dark rounded-xl focus:outline-none focus:border-primary-dark text-sm font-medium"
+                  className="w-full px-3 py-2.5 bg-[#FAF8F5] dark:bg-[#161616] border border-[#DDD8CF] dark:border-[#262626] rounded-lg text-[#181818] dark:text-[#E0E0E0] focus:outline-none focus:border-[#A32616] text-xs"
                   value={formData.difficulty}
                   onChange={(e) =>
                     setFormData({
@@ -159,44 +164,48 @@ export default function AddProblemModal({
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-muted-dark">
-                Status
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-[#777777]">
+                STATUS / VERDICT
               </label>
 
               <div className="grid grid-cols-3 gap-2">
-                {["solved", "attempted", "unsolved"].map((s) => (
+                {[
+                  { key: "solved", label: "SOLVED (AC)" },
+                  { key: "attempted", label: "ATTEMPTED" },
+                  { key: "unsolved", label: "TODO" },
+                ].map((s) => (
                   <button
-                    key={s}
+                    key={s.key}
                     type="button"
                     onClick={() =>
                       setFormData({
                         ...formData,
-                        status: s,
+                        status: s.key,
                       })
                     }
                     className={cn(
-                      "py-2 rounded-lg border text-xs font-bold capitalize transition-all",
-                      formData.status === s
-                        ? "bg-primary-dark border-primary-dark text-background-dark"
-                        : "bg-elevated-dark border-border-dark text-muted-dark hover:border-muted-dark"
+                      "py-2 rounded-md border text-[11px] font-bold transition-all",
+                      formData.status === s.key
+                        ? "bg-[#A32616] border-[#A32616] text-white"
+                        : "bg-[#FAF8F5] dark:bg-[#161616] border-[#DDD8CF] dark:border-[#262626] text-[#555555] dark:text-[#777777] hover:text-[#181818] dark:hover:text-white"
                     )}
                   >
-                    {s}
+                    {s.label}
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-muted-dark">
-                Notes (Optional)
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-[#777777]">
+                DOMAIN TAGS &amp; HEURISTICS (OPTIONAL)
               </label>
 
               <textarea
                 rows={3}
-                placeholder="Key concepts, complexity, etc."
-                className="w-full p-4 bg-elevated-dark/50 border border-border-dark rounded-xl focus:outline-none focus:border-primary-dark text-sm resize-none"
+                placeholder="e.g. Tree DP, O(N log N) runtime, 24ms"
+                className="w-full p-3 bg-[#FAF8F5] dark:bg-[#161616] border border-[#DDD8CF] dark:border-[#262626] rounded-lg text-[#181818] dark:text-[#E0E0E0] placeholder-[#777777] focus:outline-none focus:border-[#A32616] text-xs resize-none"
                 value={formData.notes}
                 onChange={(e) =>
                   setFormData({
@@ -211,15 +220,15 @@ export default function AddProblemModal({
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center space-x-2 py-4 bg-primary-dark text-background-dark font-bold rounded-xl hover:opacity-90 disabled:opacity-50 transition-all shadow-lg shadow-primary-dark/10"
+            className="w-full flex items-center justify-center space-x-2 py-3 rounded-lg bg-[#A32616] hover:bg-[#8E1F11] text-white font-mono font-bold text-xs uppercase tracking-wider transition-all disabled:opacity-50 shadow-sm"
           >
             {loading ? (
-              <div className="w-5 h-5 border-2 border-background-dark border-t-transparent rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
             ) : (
-              <Send size={18} />
+              <Send size={14} />
             )}
 
-            <span>{loading ? "Adding..." : "Add Problem"}</span>
+            <span>{loading ? "COMMITTING TO LEDGER..." : "COMMIT ENTRY"}</span>
           </button>
         </form>
       </div>

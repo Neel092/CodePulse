@@ -191,7 +191,7 @@ export default function ContestCalendarDashboard() {
                         <button
                           key={c.id}
                           onClick={() => setSelectedContest(c)}
-                          className="w-full text-left px-2 py-1.5 rounded-md flex items-center gap-2 text-[10px] font-medium hover:brightness-125 transition-all border border-transparent hover:border-white/10"
+                          className="w-full text-left px-2 py-1.5 rounded-md flex items-center gap-2 text-[10px] font-medium hover:brightness-125 transition-all border border-transparent hover:border-black/10 dark:border-white/10"
                           style={{ backgroundColor: `${PLATFORM_COLORS[c.platform] || '#7A7068'}20`, color: PLATFORM_COLORS[c.platform] || '#C9B99A' }}
                         >
                           <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: PLATFORM_COLORS[c.platform] || '#7A7068' }} />

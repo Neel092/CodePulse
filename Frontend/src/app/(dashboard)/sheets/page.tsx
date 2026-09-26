@@ -1,65 +1,145 @@
 "use client";
 
-import React from 'react';
-import { BookOpen, CheckCircle2, ChevronRight, Lock, Play } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React from "react";
+import { BookOpen, CheckCircle2, Lock, Play, Layers } from "lucide-react";
+import Link from "next/link";
 
 export default function SheetsPage() {
   const sheets = [
-    { title: "Blind 75", progress: 45, total: 75, status: "In Progress", color: "text-primary-dark" },
-    { title: "Striver SDE Sheet", progress: 120, total: 180, status: "In Progress", color: "text-secondary-dark" },
-    { title: "NeetCode 150", progress: 0, total: 150, status: "Locked", color: "text-muted-dark", locked: true },
-    { title: "Love Babbar 450", progress: 450, total: 450, status: "Completed", color: "text-info-dark", completed: true },
+    {
+      title: "Blind 75",
+      subtitle: "Foundational patterns curated for high-velocity interviews",
+      progress: 45,
+      total: 75,
+      status: "ACTIVE INGEST",
+      color: "#FF4D1C",
+    },
+    {
+      title: "Striver SDE Sheet",
+      subtitle: "Comprehensive 180-node algorithmic interview monograph",
+      progress: 120,
+      total: 180,
+      status: "IN PROGRESS",
+      color: "#10B981",
+    },
+    {
+      title: "NeetCode 150",
+      subtitle: "Extensive categorical tree spanning all core CS paradigms",
+      progress: 0,
+      total: 150,
+      status: "LOCKED",
+      color: "#F59E0B",
+      locked: true,
+    },
+    {
+      title: "Love Babbar 450",
+      subtitle: "Full-spectrum competitive data structures & algorithms catalog",
+      progress: 450,
+      total: 450,
+      status: "COMPLETED",
+      color: "#3B82F6",
+      completed: true,
+    },
   ];
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-1">
-        <h1 className="text-4xl font-display font-bold text-heading-dark">Curated Sheets</h1>
-        <p className="text-muted-dark font-medium">Master specific domains with these community-vetted problem sets.</p>
+    <div className="space-y-8 pb-12 font-sans">
+      {/* HEADER */}
+      <div>
+        <div className="flex items-center space-x-2 text-xs font-mono text-gray-500 dark:text-[#888888]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#FF4D1C] animate-pulse" />
+          <span className="text-[#FF4D1C] font-semibold">// CURATED REPOSITORIES</span>
+          <span>::</span>
+          <span className="text-gray-400 dark:text-[#666666]">SYSTEMATIC PROBLEM SHEETS</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-black dark:text-white tracking-tight mt-1">
+          Curated Sheets
+        </h1>
+        <p className="text-xs font-mono text-gray-500 dark:text-[#777777] uppercase tracking-wider mt-1">
+          Master specific domains with community-vetted problem sets and algorithmic tracks.
+        </p>
       </div>
 
+      {/* 4 SHEET CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {sheets.map((sheet) => (
-          <div key={sheet.title} className="bg-surface-dark border border-border-dark p-6 rounded-2xl group transition-all cursor-not-allowed relative overflow-hidden grayscale opacity-50">
-            <div className="absolute inset-0 bg-background-dark/80 backdrop-blur-[2px] z-20 flex items-center justify-center">
-              <span className="text-sm font-bold tracking-widest uppercase text-muted-dark border border-muted-dark/30 px-4 py-2 rounded-lg">Coming Soon</span>
-            </div>
-            <div className="relative z-10 flex flex-col h-full justify-between space-y-6">
+        {sheets.map((sheet) => {
+          const percent = Math.round((sheet.progress / sheet.total) * 100);
+          const accentColor = sheet.color === "#FF4D1C" ? "#A32616" : sheet.color;
+          return (
+            <div
+              key={sheet.title}
+              className="rounded-xl bg-white dark:bg-[#111111] border border-[#E8E4DC] dark:border-[#222222] p-6 space-y-5 hover:border-[#DDD8CF] dark:hover:border-[#333333] transition-all relative overflow-hidden group shadow-[0_1px_3px_rgba(0,0,0,0.02)]"
+            >
               <div className="flex items-start justify-between">
-                <div className="space-y-2">
-                  <div className={cn("p-3 rounded-xl bg-elevated-dark w-fit", sheet.color)}>
-                    <BookOpen size={24} />
+                <div className="flex items-center space-x-3.5">
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center font-bold"
+                    style={{ backgroundColor: `${accentColor}15`, color: accentColor }}
+                  >
+                    <BookOpen size={18} />
                   </div>
-                  <h3 className="text-2xl font-display font-bold text-foreground-dark">{sheet.title}</h3>
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-[#181818] dark:text-white tracking-tight">
+                      {sheet.title}
+                    </h3>
+                    <p className="text-[10px] font-mono text-[#777777] dark:text-[#777777] mt-0.5">
+                      {sheet.subtitle}
+                    </p>
+                  </div>
                 </div>
+
                 {sheet.locked ? (
-                  <Lock className="text-muted-dark" size={20} />
+                  <span className="p-1 rounded bg-[#FAF8F5] dark:bg-[#181818] border border-[#DDD8CF] dark:border-transparent text-[#777777] dark:text-[#666666]">
+                    <Lock size={14} />
+                  </span>
                 ) : sheet.completed ? (
-                  <CheckCircle2 className="text-secondary-dark" size={24} />
+                  <span className="px-2 py-0.5 rounded bg-[#0D8050]/10 text-[#0D8050] font-mono text-[10px] font-bold">
+                    COMPLETED
+                  </span>
                 ) : (
-                  <Play className="text-primary-dark opacity-0 group-hover:opacity-100 transition-opacity" size={20} />
+                  <span className="px-2 py-0.5 rounded bg-[#A32616]/10 text-[#A32616] font-mono text-[10px] font-bold">
+                    {sheet.status}
+                  </span>
                 )}
               </div>
 
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm font-bold">
-                  <span className="text-muted-dark">Progress</span>
-                  <span className="text-foreground-dark">--%</span>
+              {/* Progress metric */}
+              <div className="space-y-2 pt-2 font-mono text-xs">
+                <div className="flex justify-between items-baseline">
+                  <span className="text-[#666666] dark:text-[#888888] text-[11px]">
+                    {sheet.progress} of {sheet.total} problems solved
+                  </span>
+                  <span className="font-bold text-[#181818] dark:text-white text-sm">{percent}%</span>
                 </div>
-                <div className="h-2 bg-elevated-dark rounded-full overflow-hidden" />
-                <p className="text-xs text-muted-dark font-medium">
-                  -- of {sheet.total} problems solved
-                </p>
+
+                <div className="h-1.5 w-full rounded-full bg-[#EAE5DD] dark:bg-[#1C1C1C] overflow-hidden">
+                  <div
+                    className="h-full transition-all duration-500 rounded-full"
+                    style={{
+                      width: `${percent}%`,
+                      backgroundColor: accentColor,
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Card footer */}
+              <div className="pt-2 border-t border-[#E8E4DC] dark:border-[#1C1C1C] flex items-center justify-between font-mono text-xs">
+                <Link
+                  href="/problems"
+                  className="inline-flex items-center space-x-1.5 text-[#666666] dark:text-[#888888] hover:text-[#A32616] transition-colors"
+                >
+                  <Play size={12} className="text-[#A32616]" />
+                  <span className="text-[11px] font-bold">OPEN IN PROBLEM LEDGER</span>
+                </Link>
+
+                <span className="text-[10px] text-[#888888] dark:text-[#555555]">
+                  {sheet.total - sheet.progress} REMAINING
+                </span>
               </div>
             </div>
-            
-            {/* Background Accent */}
-            <div className="absolute -right-8 -bottom-8 opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
-              <BookOpen size={160} />
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
