@@ -326,12 +326,10 @@ CodePulse/
 
 ## Roadmap
 
-<<<<<<< HEAD
 - [ ] Background job queues (webhook-based sync)
 - [ ] Leaderboard
 - [ ] Sheet generator & Interview tracker
 - [ ] Company-specific problem roadmaps
-=======
 - [x] LeetCode sync
 - [x] Codeforces sync
 - [x] Custom CodeChef scraper API with Redis caching
@@ -342,8 +340,7 @@ CodePulse/
 - [ ] GeeksforGeeks sync
 - [ ] Background sync jobs (cron-based)
 - [ ] Leaderboard among friends
->>>>>>> 7b9b62f (Minor changes in Readme file,Fronted and added docker file)
-- [ ] Docker + CI/CD pipeline
+- [x] Docker + CI/CD pipeline
 - [ ] Company-specific problem roadmaps
 
 ---
